@@ -74,7 +74,7 @@ class LoginActivity : AppCompatActivity(){
         var focusView: View? = null
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(passwordStr) && !isPasswordValid(passwordStr)) {
+        if (TextUtils.isEmpty(passwordStr) || !isPasswordValid(passwordStr)) {
             password.error = getString(R.string.error_invalid_password)
             focusView = password
             cancel = true
@@ -115,7 +115,7 @@ class LoginActivity : AppCompatActivity(){
 
     private fun isPasswordValid(password: String): Boolean {
         //TODO: Replace this with your own logic
-        return password != null && password.length > 4
+        return password.length > 4
     }
 
 
