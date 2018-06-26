@@ -1,5 +1,7 @@
 package com.example.deakyu.fitnessapp
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -12,6 +14,18 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+
+    companion object {
+
+        fun newIntent(context : Context): Intent
+        {
+            val intent = Intent(context,MainActivity::class.java)
+            return intent
+        }
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,21 +73,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_camera -> {
-                // Handle the camera action
+                finish()
             }
             R.id.nav_gallery -> {
-
+                finish()
             }
             R.id.nav_slideshow -> {
-
+                finish()
             }
             R.id.nav_manage -> {
-
+                finish()
             }
             R.id.nav_share -> {
-
+                finish()
             }
             R.id.nav_send -> {
+
+                finish()
 
             }
         }
