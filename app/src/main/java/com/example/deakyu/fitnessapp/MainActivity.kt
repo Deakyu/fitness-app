@@ -3,7 +3,6 @@ package com.example.deakyu.fitnessapp
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -15,7 +14,6 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-
     companion object {
 
         fun newIntent(context : Context): Intent
@@ -25,17 +23,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -72,25 +63,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
+            R.id.nav_diets -> {
                 finish()
             }
-            R.id.nav_gallery -> {
+            R.id.nav_workouts -> {
                 finish()
             }
-            R.id.nav_slideshow -> {
+            R.id.nav_profile -> {
                 finish()
-            }
-            R.id.nav_manage -> {
-                finish()
-            }
-            R.id.nav_share -> {
-                finish()
-            }
-            R.id.nav_send -> {
-
-                finish()
-
             }
         }
 
