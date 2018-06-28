@@ -8,7 +8,6 @@ import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import com.example.deakyu.fitnessapp.utils.CommonFunctions
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isEmailValid
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isPasswordValid
 import kotlinx.android.synthetic.main.activity_login.*
@@ -59,7 +58,7 @@ class LoginActivity : AppCompatActivity(){
         var focusView: View? = null
 
         // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(passwordStr) || !passwordStr.isPasswordValid()) {
+        if (!passwordStr.isPasswordValid()) {
             password.error = getString(R.string.error_invalid_password)
             focusView = password
             cancel = true
