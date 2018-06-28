@@ -31,16 +31,24 @@ class RegisterActivity : AppCompatActivity(){
         // Reset errors.
         email.error = null
         password.error = null
+        name.error = null
+        age.error = null
+        height.error = null
+        weight.error = null
 
         // Store values at the time of the login attempt.
         val emailStr = email.text.toString()
         val passwordStr = password.text.toString()
+        val nameStr = name.text.toString()
+        val ageStr = age.text.toString()
+        val heightStr = height.text.toString()
+        val weightStr = weight.text.toString()
 
         var cancel = false
         var focusView: View? = null
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(passwordStr) && !isPasswordValid(passwordStr)) {
+        if (TextUtils.isEmpty(passwordStr) && !isPasswordValid(passwordStr)) {
             password.error = getString(R.string.error_invalid_password)
             focusView = password
             cancel = true
@@ -56,6 +64,38 @@ class RegisterActivity : AppCompatActivity(){
             focusView = email
             cancel = true
         }
+
+        // Check for a name not empty.
+        if (TextUtils.isEmpty(nameStr)) {
+            name.error = getString(R.string.error_field_required)
+            focusView = name
+            cancel = true
+        }
+
+
+        // Check for a Age not empty.
+        if (TextUtils.isEmpty(ageStr)) {
+            age.error = getString(R.string.error_field_required)
+            focusView = age
+            cancel = true
+        }
+
+        // Check for a Height not empty.
+        if (TextUtils.isEmpty(heightStr)) {
+            height.error = getString(R.string.error_field_required)
+            focusView = height
+            cancel = true
+        }
+
+
+        // Check for a weight not empty.
+        if (TextUtils.isEmpty(weightStr)) {
+            weight.error = getString(R.string.error_field_required)
+            focusView = weight
+            cancel = true
+        }
+
+
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -81,7 +121,7 @@ class RegisterActivity : AppCompatActivity(){
 
     private fun isPasswordValid(password: String): Boolean {
         //TODO: Replace this with your own logic
-        return password != null && password.length > 4
+        return  password.length > 4
     }
 
 
