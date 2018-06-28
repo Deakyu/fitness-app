@@ -6,4 +6,9 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="nav_diet_string">Diets</string>
+    <string name="nav_workout_string">Workouts</string>
+    <string name="nav_profile_string">Profile</string>
+    <string name="setup_diet_string">Setup Diet</string>
+    <string name="create_rourtines_string">Create Routines</string>
 </resources>

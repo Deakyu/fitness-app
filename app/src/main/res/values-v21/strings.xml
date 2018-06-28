@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_diet_string">Diets</string>
+    <string name="nav_workout_string">Workouts</string>
+    <string name="nav_profile_string">Profile</string>
+    <string name="setup_diet_string">Setup Diet</string>
+    <string name="create_rourtines_string">Create Routines</string>
+</resources>
