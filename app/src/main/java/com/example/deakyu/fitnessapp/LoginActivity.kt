@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity(){
         var focusView: View? = null
 
         // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(passwordStr) || !isPasswordValid(passwordStr)) {
+        if (TextUtils.isEmpty(passwordStr) || !passwordStr.isPasswordValid()) {
             password.error = getString(R.string.error_invalid_password)
             focusView = password
             cancel = true
@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity(){
             email.error = getString(R.string.error_field_required)
             focusView = email
             cancel = true
-        } else if (!isEmailValid(emailStr)) {
+        } else if (!emailStr.isEmailValid()) {
             email.error = getString(R.string.error_invalid_email)
             focusView = email
             cancel = true
@@ -88,7 +88,7 @@ class LoginActivity : AppCompatActivity(){
 
     private fun runService()
     {
-        //TODO:make called to the api
+        //TODO:make calle to the api
 
         var intent = MainActivity.newIntent(this@LoginActivity)
         startActivity(intent)

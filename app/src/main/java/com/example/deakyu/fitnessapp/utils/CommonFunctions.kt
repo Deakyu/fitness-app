@@ -3,21 +3,14 @@ package com.example.deakyu.fitnessapp.utils
 
 class CommonFunctions
 {
-
     companion object {
 
-         fun isEmailValid(email: String): Boolean {
-            //TODO: Replace this with your own logic
-            return email.contains("@")
-        }
+        //TODO: Replace this with your own logic
+         fun String.isEmailValid()=  this.contains("@")
 
-         fun isPasswordValid(password: String): Boolean {
-            //TODO: Replace this with your own logic
-            return  password.length > 4
-        }
+        //TODO: Replace this with your own logic
+         fun String.isPasswordValid() = this.length > 4
 
     }
-
-
 }
 

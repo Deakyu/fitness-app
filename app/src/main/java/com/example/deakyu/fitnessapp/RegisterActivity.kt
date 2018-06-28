@@ -50,7 +50,7 @@ class RegisterActivity : AppCompatActivity(){
         var focusView: View? = null
 
         // Check for a valid password, if the user entered one.
-        if (!isPasswordValid(passwordStr)) {
+        if (!passwordStr.isPasswordValid()) {
             password.error = getString(R.string.error_invalid_password)
             focusView = password
             cancel = true
@@ -61,7 +61,7 @@ class RegisterActivity : AppCompatActivity(){
             email.error = getString(R.string.error_field_required)
             focusView = email
             cancel = true
-        } else if (!isEmailValid(emailStr)) {
+        } else if (!emailStr.isEmailValid()) {
             email.error = getString(R.string.error_invalid_email)
             focusView = email
             cancel = true
@@ -111,6 +111,8 @@ class RegisterActivity : AppCompatActivity(){
 
     private fun runService()
     {
+        //TODO:make call to the api
+
         var intent = LoginActivity.newIntent(this@RegisterActivity)
         startActivity(intent)
 
