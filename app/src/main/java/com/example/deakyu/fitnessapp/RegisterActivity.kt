@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.View
+import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isEmailValid
+import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isPasswordValid
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity(){
@@ -48,7 +50,7 @@ class RegisterActivity : AppCompatActivity(){
         var focusView: View? = null
 
         // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(passwordStr) && !isPasswordValid(passwordStr)) {
+        if (!passwordStr.isPasswordValid()) {
             password.error = getString(R.string.error_invalid_password)
             focusView = password
             cancel = true
@@ -59,7 +61,7 @@ class RegisterActivity : AppCompatActivity(){
             email.error = getString(R.string.error_field_required)
             focusView = email
             cancel = true
-        } else if (!isEmailValid(emailStr)) {
+        } else if (!emailStr.isEmailValid()) {
             email.error = getString(R.string.error_invalid_email)
             focusView = email
             cancel = true
@@ -109,19 +111,11 @@ class RegisterActivity : AppCompatActivity(){
 
     private fun runService()
     {
+        //TODO:make call to the api
+
         var intent = LoginActivity.newIntent(this@RegisterActivity)
         startActivity(intent)
 
-    }
-
-    private fun isEmailValid(email: String): Boolean {
-        //TODO: Replace this with your own logic
-        return email.contains("@")
-    }
-
-    private fun isPasswordValid(password: String): Boolean {
-        //TODO: Replace this with your own logic
-        return  password.length > 4
     }
 
 
