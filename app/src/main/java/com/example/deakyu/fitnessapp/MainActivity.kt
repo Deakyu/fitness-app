@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_diets -> {
 
                 //TODO: Create the layout to setup diet and put the following code in the activity related
-                   createAlertDialog("Add Diet")
+                   createAlertDialog(getString(R.string.add_diet))
 
                 //we can reuse the las alertDialog for meals
                 // createAlertDialog("Add Meal")
