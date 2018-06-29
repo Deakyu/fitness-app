@@ -28,10 +28,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string-array name="gender_array">
-        <item>Male</item>
-        <item>Female</item>
-    </string-array>
 
     <!-- Navigation Header -->
     <string name="nav_diet_string">Diets</string>
@@ -41,12 +37,15 @@
     <string name="setup_diet_string">Setup Diet</string>
     <string name="create_routines_string">Create Routines</string>
 
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
     <!-- AlertDialog -->
     <string name="button_accept">Accept</string>
     <string name="button_cancel">Cancel</string>
     <string name="add_diet">Add Diet</string>
     <string name="add_meal">Add Meal</string>
-
-
 
 </resources>
