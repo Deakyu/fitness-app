@@ -7,12 +7,12 @@ import android.arch.persistence.room.Query
 import com.example.deakyu.fitnessapp.calorie.diet.model.MealLocal
 
 interface MealDao {
-    @Query("SELECT * FROM mealLocals")
+    @Query("SELECT * FROM meals")
     fun getAllMeals(): LiveData<List<MealLocal>>
 
     @Insert(onConflict = REPLACE)
     fun insert(mealLocal: MealLocal)
 
-    @Query("DELETE FROM mealLocals")
+    @Query("DELETE FROM meals")
     fun deleteAll()
 }
