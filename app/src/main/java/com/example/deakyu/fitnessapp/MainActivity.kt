@@ -1,16 +1,21 @@
 package com.example.deakyu.fitnessapp
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.custom_dialog.view.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -64,7 +69,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_diets -> {
-                finish()
+
+                //TODO: Create the layout to setup diet and put the following code in the activity related
+                   createAlertDialog(getString(R.string.add_diet))
+
+                //we can reuse the las alertDialog for meals
+                // createAlertDialog("Add Meal")
+
             }
             R.id.nav_workouts -> {
                 finish()
@@ -77,4 +88,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+
+//TODO: change this in an appropriate place (like in the activity related with the setup diet where we will put the fragments)
+    fun createAlertDialog(title:String){
+
+        val layout = LayoutInflater.from(this).inflate(R.layout.custom_dialog,null)
+        val editTextName = layout.editTextName
+
+        AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_input_add)
+                .setTitle(title)
+                .setView(layout)
+                .setPositiveButton(getString(R.string.button_accept)) { dialogInterface: DialogInterface, i: Int ->
+
+                    //TODO: make something with the string
+                    Toast.makeText(this,editTextName.text.toString(), Toast.LENGTH_SHORT).show()
+
+
+                }
+                .setNegativeButton(getString(R.string.button_cancel),null)
+                .show()
+    }
+
 }

@@ -38,9 +38,14 @@
     <string name="create_routines_string">Create Routines</string>
 
     <string-array name="gender_array">
-        <item>Man</item>
-        <item>Woman</item>
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
 
+    <!-- AlertDialog -->
+    <string name="button_accept">Accept</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="add_diet">Add Diet</string>
+    <string name="add_meal">Add Meal</string>
 
 </resources>
