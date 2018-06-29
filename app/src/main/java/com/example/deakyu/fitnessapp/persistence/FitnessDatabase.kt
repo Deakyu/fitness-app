@@ -11,6 +11,9 @@ import com.example.deakyu.fitnessapp.persistence.model.ConsumableLocal
 import com.example.deakyu.fitnessapp.persistence.model.ConsumableMealJoin
 import com.example.deakyu.fitnessapp.persistence.model.DailyCalory
 import com.example.deakyu.fitnessapp.persistence.model.UserLocal
+import com.example.deakyu.fitnessapp.persistence.dao.ConsumableDao
+import com.example.deakyu.fitnessapp.persistence.dao.DietDao
+import com.example.deakyu.fitnessapp.persistence.dao.MealDao
 
 @Database(entities = [UserLocal::class,
                       DailyCalory::class,
