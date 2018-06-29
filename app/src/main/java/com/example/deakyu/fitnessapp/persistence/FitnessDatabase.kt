@@ -6,6 +6,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import com.example.deakyu.fitnessapp.calorie.diet.model.DietLocal
 import com.example.deakyu.fitnessapp.calorie.diet.model.MealLocal
+import com.example.deakyu.fitnessapp.persistence.dao.ConsumableDao
 import com.example.deakyu.fitnessapp.persistence.dao.DietDao
 import com.example.deakyu.fitnessapp.persistence.dao.MealDao
 
@@ -14,6 +15,7 @@ abstract class FitnessDatabase: RoomDatabase() {
 
     abstract fun dietDao(): DietDao
     abstract fun mealDao(): MealDao
+    abstract fun consumableDao(): ConsumableDao
 
     companion object {
         private var INSTANCE: FitnessDatabase ?= null
