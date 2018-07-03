@@ -15,4 +15,5 @@ data class Meal(val consumables: MutableList<Consumable>,
                 val sugarsGrams: Double,
                 val fiberGrams: Double,
                 val proteinGrams: Double,
-                val mealId: String)
+                val mealId: String,
+                val mealName: String)
