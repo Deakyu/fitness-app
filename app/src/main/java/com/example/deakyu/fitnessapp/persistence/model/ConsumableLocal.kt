@@ -15,4 +15,7 @@ data class ConsumableLocal(@ColumnInfo(name = "calories") val calories: Double,
                            @ColumnInfo(name = "sugars_grams") val sugarsGrams: Double,
                            @ColumnInfo(name = "fiber_grams") val fiberGrams: Double,
                            @ColumnInfo(name = "protein_grams") val proteinGrams: Double,
+                           @ColumnInfo(name = "product_name") val productName: String,
+                           @ColumnInfo(name = "product_quantity") val productQuantity: Double,
+                           @ColumnInfo(name = "image_url") val imageUrl: String,
                            @PrimaryKey(autoGenerate = false) val id: String)
