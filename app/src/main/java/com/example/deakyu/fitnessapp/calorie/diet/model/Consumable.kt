@@ -14,4 +14,7 @@ data class Consumable(val calories: Double,
                       val sugarsGrams: Double,
                       val fiberGrams: Double,
                       val proteinGrams: Double,
-                      val productId: String)
+                      val productId: String,
+                      val productName: String,
+                      val productQuantity: Double,
+                      val imageUrl: String)
