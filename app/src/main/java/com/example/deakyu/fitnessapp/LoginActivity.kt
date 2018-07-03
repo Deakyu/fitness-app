@@ -10,10 +10,19 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isEmailValid
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isPasswordValid
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
 import kotlinx.android.synthetic.main.activity_login.*
 
 
+
+
+
+
 class LoginActivity : AppCompatActivity(){
+    var signinBtn: SignInButton? = null
 
 
     companion object {
@@ -27,6 +36,16 @@ class LoginActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        //sign_in_button.setOnClickListener(this)
+        // Configure sign-in to request the user's ID, email address, and basic
+// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        var mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
@@ -42,6 +61,19 @@ class LoginActivity : AppCompatActivity(){
             var intent = RegisterActivity.newIntent(this@LoginActivity)
             startActivity(intent)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Check for existing Google Sign In account, if the user is already signed in
+// the GoogleSignInAccount will be non-null.
+        val account = GoogleSignIn.getLastSignedInAccount(this)
+        updateUI(account)
+    }
+
+    private fun updateUI(account: GoogleSignInAccount?) {
+
+        System.out.print("You are logged in!")
     }
 
     private fun attemptLogin() {

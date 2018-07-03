@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "55214791403",
+    "firebase_url": "https://baufer-c03c3.firebaseio.com",
+    "project_id": "baufer-c03c3",
+    "storage_bucket": "baufer-c03c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55214791403:android:19767acfed1b57d8",
+        "android_client_info": {
+          "package_name": "com.example.deakyu.fitnessapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55214791403-cdi27hhcepk77499okkkakjr5evvi8d3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.deakyu.fitnessapp",
+            "certificate_hash": "c024cafe60e1e7b51c894b696106ba3632997211"
+          }
+        },
+        {
+          "client_id": "55214791403-q78h8d6dl91uqnt5mhgrgqijc3e1nfei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-CFDKUOoHX7yXcTl0TlaJ3mRVuhECGSI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55214791403-q78h8d6dl91uqnt5mhgrgqijc3e1nfei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
