@@ -6,16 +6,26 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import com.example.deakyu.fitnessapp.calorie.diet.model.DietLocal
 import com.example.deakyu.fitnessapp.calorie.diet.model.MealLocal
-import com.example.deakyu.fitnessapp.persistence.dao.ConsumableDao
-import com.example.deakyu.fitnessapp.persistence.dao.DietDao
-import com.example.deakyu.fitnessapp.persistence.dao.MealDao
+import com.example.deakyu.fitnessapp.persistence.dao.*
+import com.example.deakyu.fitnessapp.persistence.model.ConsumableLocal
+import com.example.deakyu.fitnessapp.persistence.model.ConsumableMealJoin
+import com.example.deakyu.fitnessapp.persistence.model.DailyCalory
+import com.example.deakyu.fitnessapp.persistence.model.UserLocal
 
-@Database(entities = [(DietLocal::class), (MealLocal::class)], version = 1)
+@Database(entities = [UserLocal::class,
+                      DailyCalory::class,
+                      DietLocal::class,
+                      MealLocal::class,
+                      ConsumableLocal::class,
+                      ConsumableMealJoin::class], version = 1)
 abstract class FitnessDatabase: RoomDatabase() {
 
+    abstract fun userDao(): UserDao
     abstract fun dietDao(): DietDao
     abstract fun mealDao(): MealDao
     abstract fun consumableDao(): ConsumableDao
+    abstract fun dailyCaloryDao(): DailyCaloryDao
+    abstract fun consumableMealJoinDao(): ConsumableMealJoinDao
 
     companion object {
         private var INSTANCE: FitnessDatabase ?= null
