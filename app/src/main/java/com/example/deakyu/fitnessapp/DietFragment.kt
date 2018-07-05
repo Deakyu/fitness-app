@@ -2,14 +2,11 @@ package com.example.deakyu.fitnessapp
 
 
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.NavOptions
-import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
 
 
 class DietFragment : Fragment() {
@@ -23,12 +20,12 @@ class DietFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        view.findViewById<Button>(R.id.diet_bt)?.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.next_action,null)
-        )
+                view.findViewById<FloatingActionButton>(R.id.fab_diet)?.setOnClickListener{
+                    DietActivity.createAlertDialog(getString(R.string.add_diet),context!!)
+                }
 
     }
 
-
 }
+
+

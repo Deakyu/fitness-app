@@ -6,8 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.Navigation
+
 
 
 class ListFoodFragment : Fragment() {
@@ -20,10 +19,6 @@ class ListFoodFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<Button>(R.id.button_go_addfood)?.setOnClickListener (
-                Navigation.createNavigateOnClickListener(R.id.next_action,null)
-        )
 
 
     }
