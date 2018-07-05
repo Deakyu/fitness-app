@@ -70,8 +70,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_diets -> {
 
+                val intent = DietActivity.newIntent(this)
+                startActivity(intent)
+
                 //TODO: Create the layout to setup diet and put the following code in the activity related
-                   createAlertDialog(getString(R.string.add_diet))
+                 //  createAlertDialog(getString(R.string.add_diet))
 
                 //we can reuse the las alertDialog for meals
                 // createAlertDialog("Add Meal")
