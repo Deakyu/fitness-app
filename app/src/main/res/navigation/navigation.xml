@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/diet_home">
+
+    <fragment
+        android:id="@+id/diet_home"
+        android:name="com.example.deakyu.fitnessapp.DietFragment"
+        android:label= "@string/diet_fragment"
+        tools:layout = "@layout/fragment_diet">
+
+        <action
+            android:id="@+id/next_action"
+            app:destination="@+id/meal_home"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/meal_home"
+        android:name="com.example.deakyu.fitnessapp.MealFragment"
+        android:label= "@string/meal_fragment"
+        tools:layout = "@layout/fragment_meal">
+
+
+        <action
+            android:id="@+id/next_action"
+            app:destination="@+id/list_food_home"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/list_food_home"
+        android:name="com.example.deakyu.fitnessapp.ListFoodFragment"
+        android:label= "@string/list_food_fragment"
+        tools:layout = "@layout/fragment_list_food">
+
+        <action
+            android:id="@+id/next_action"
+            app:destination="@+id/add_food_home"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/add_food_home"
+        android:name="com.example.deakyu.fitnessapp.AddFoodFragment"
+        android:label= "@string/add_food_fragment"
+        tools:layout = "@layout/fragment_add_food">
+
+
+
+    </fragment>
+
+
+
+</navigation>
