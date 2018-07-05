@@ -6,18 +6,19 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import com.example.deakyu.fitnessapp.user.model.User
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isEmailValid
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isPasswordValid
 import kotlinx.android.synthetic.main.activity_register.*
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 
-class RegisterActivity : AppCompatActivity(){
+class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private var genderStr: String? = null
 
     companion object {
         fun newIntent(context: Context): Intent
@@ -32,6 +33,7 @@ class RegisterActivity : AppCompatActivity(){
         setContentView(R.layout.activity_register)
 
         register_button.setOnClickListener { attemptRegister() }
+        gender_spinner.onItemSelectedListener = this
     }
 
     private fun attemptRegister() {
@@ -106,42 +108,47 @@ class RegisterActivity : AppCompatActivity(){
             // form field with an error.
             focusView?.requestFocus()
         } else {
-            // TODO: Include gender as parameter
-            runService(emailStr, passwordStr, nameStr, ageStr.toInt(), heightStr.toDouble(), weightStr.toDouble())
+            runService(emailStr, passwordStr, nameStr, ageStr.toInt(), heightStr.toDouble(), weightStr.toDouble(), genderStr?:resources.getStringArray(R.array.gender_array)[0])
         }
     }
 
-    // TODO: Include gender as parameter
-    private fun runService(email: String, password: String, name: String, age: Int, height: Double, weight: Double)
+    private fun runService(email: String, password: String, name: String, age: Int, height: Double, weight: Double, gender: String)
     {
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this@RegisterActivity) {
-                    if(it.isSuccessful()) {
-                        // Signup && Signin success, update ui with the signed-in user's information
-                        val user: User = User(name, email, age, height, weight, "Male")
-                        val currentUser = mAuth.currentUser
-                        if(currentUser != null) {
-                            FirebaseDatabase
-                                    .getInstance()
-                                    .getReference("users")
-                                    .child(currentUser.uid)
-                                    .setValue(user)
-                                    .addOnCompleteListener {
-                                        if(it.isSuccessful()) {
-                                            Toast.makeText(applicationContext, "Welcome, ${user.name}! You're registered", Toast.LENGTH_SHORT).show()
-                                            var intent = LoginActivity.newIntent(this@RegisterActivity)
-                                            startActivity(intent)
-                                        } else {
-                                            Toast.makeText(this@RegisterActivity, getString(R.string.error_register_user), Toast.LENGTH_SHORT).show()
-                                        }
-                                    }
+        mAuth
+        .createUserWithEmailAndPassword(email, password)
+        .addOnCompleteListener(this@RegisterActivity) {
+            if(it.isSuccessful) { // Sign-up success
+                val user: User = User(name, email, age, height, weight, gender)
+                val currentUser = mAuth.currentUser
+                if(currentUser != null) {
+                    FirebaseDatabase
+                        .getInstance()
+                        .getReference("users")
+                        .child(currentUser.uid) // UID of the recently registered user
+                        .setValue(user)
+                        .addOnCompleteListener {
+                            if(it.isSuccessful) { // Success to save user profile
+                                Toast.makeText(applicationContext, "Welcome, ${user.name}! You're registered", Toast.LENGTH_SHORT).show()
+                                val intent = LoginActivity.newIntent(this@RegisterActivity)
+                                startActivity(intent)
+                            } else { // Failed to save user profile
+                                Toast.makeText(this@RegisterActivity, getString(R.string.error_register_user), Toast.LENGTH_SHORT).show()
+                            }
                         }
-                    } else {
-                        // Signup && Signin fails, display error message
-                        Toast.makeText(this@RegisterActivity, getString(R.string.error_register_user), Toast.LENGTH_SHORT).show()
-                    }
                 }
+            } else { // Sign-up Failed - display error message
+                Toast.makeText(this@RegisterActivity, getString(R.string.error_register_user), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
+    // Spinner Item Selected Listener - User clicked somewhere else than one of the items
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+    // Spinner Item Selected Listener - User selected an item
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        genderStr = parent?.getItemAtPosition(position).toString()
+        Toast.makeText(this@RegisterActivity, genderStr, Toast.LENGTH_SHORT).show()
     }
 
 
