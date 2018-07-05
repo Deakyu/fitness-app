@@ -48,4 +48,16 @@
     <string name="add_diet">Add Diet</string>
     <string name="add_meal">Add Meal</string>
 
+    <!-- Fragment Diet -->
+    <string name="diet_fragment">Diet fragment</string>
+
+    <!-- Fragment Meal -->
+    <string name="meal_fragment">Meal fragment</string>
+
+    <!-- List Food fragment -->
+    <string name="list_food_fragment">List Food fragment</string>
+
+    <!-- Add food fragment -->
+    <string name="add_food_fragment">Add food fragment</string>
+
 </resources>
