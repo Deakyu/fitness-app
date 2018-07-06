@@ -60,4 +60,20 @@
     <!-- Add food fragment -->
     <string name="add_food_fragment">Add food fragment</string>
 
+    <!-- Consumables creation -->
+    <string name="action_create_consumable">Create Consumable</string>
+    <string name="calories">Calories</string>
+    <string name="fat_grams">Fat grams</string>
+    <string name="sat_fat_grams">Saturated fat grams</string>
+    <string name="trans_fat_grams">Trans fat grams</string>
+    <string name="poly_fat_grams">Polyunsaturated fat grams</string>
+    <string name="mono_fat_grams">Monounsaturated fat grams</string>
+    <string name="carb_grams">Carbohydrate grams</string>
+    <string name="sugar_grams">Sugar grams</string>
+    <string name="fiber_grams">Fiber grams</string>
+    <string name="protein_grams">Protein grams</string>
+    <string name="quantity_grams">Quantity (gr/ml)</string>
+    <string name="product_name">Product name</string>
+    <string name="select_image">Select Image</string>
+
 </resources>
