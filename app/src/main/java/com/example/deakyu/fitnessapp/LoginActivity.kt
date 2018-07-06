@@ -8,13 +8,16 @@ import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import android.widget.Toast
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isEmailValid
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isPasswordValid
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : AppCompatActivity(){
 
+    private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     companion object {
         fun newIntent(context:Context):Intent
@@ -80,17 +83,23 @@ class LoginActivity : AppCompatActivity(){
             // form field with an error.
             focusView?.requestFocus()
         } else {
-
-            runService()
+            loginUser(emailStr, passwordStr)
         }
     }
 
-    private fun runService()
+    private fun loginUser(email: String, password: String)
     {
-        //TODO:make calle to the api
-
-        var intent = MainActivity.newIntent(this@LoginActivity)
-        startActivity(intent)
+        mAuth
+        .signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this@LoginActivity) {
+                if(it.isSuccessful) { // Login success - no need to retrieve user info here yet
+                    Toast.makeText(applicationContext, getString(R.string.success_login_user), Toast.LENGTH_SHORT).show()
+                    val intent = MainActivity.newIntent(this@LoginActivity)
+                    startActivity(intent)
+                } else { // Login fail
+                    Toast.makeText(applicationContext, getString(R.string.error_login_user), Toast.LENGTH_SHORT).show()
+                }
+            }
 
     }
 
