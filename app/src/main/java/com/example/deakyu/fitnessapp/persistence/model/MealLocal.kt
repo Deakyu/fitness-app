@@ -9,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "meals",
         foreignKeys = [ForeignKey(entity = DietLocal::class,
                                   parentColumns = ["id"],
-                                  childColumns = ["userId"],
+                                  childColumns = ["dietId"],
                                   onDelete = CASCADE)])
 data class MealLocal(@ColumnInfo(name = "dietId") val dietId: String,
                      @ColumnInfo(name = "mealName") val mealName: String,

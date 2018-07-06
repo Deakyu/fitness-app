@@ -3,6 +3,7 @@ package com.example.deakyu.fitnessapp.persistence
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
+import android.arch.persistence.room.TypeConverters
 import android.content.Context
 import com.example.deakyu.fitnessapp.calorie.diet.model.DietLocal
 import com.example.deakyu.fitnessapp.calorie.diet.model.MealLocal
@@ -18,6 +19,7 @@ import com.example.deakyu.fitnessapp.persistence.model.UserLocal
                       MealLocal::class,
                       ConsumableLocal::class,
                       ConsumableMealJoin::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class FitnessDatabase: RoomDatabase() {
 
     abstract fun userDao(): UserDao
