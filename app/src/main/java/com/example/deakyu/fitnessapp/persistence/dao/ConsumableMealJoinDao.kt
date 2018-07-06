@@ -16,10 +16,10 @@ interface ConsumableMealJoinDao {
     @Query("SELECT * FROM consumables INNER JOIN consumables_meals ON" +
             " consumables.id=consumables_meals.consumableId WHERE" +
             " consumables_meals.mealId=:mealId")
-    fun getConsumablesByMealId(mealId: String): LiveData<List<MealLocal>>
+    fun getConsumablesByMealId(mealId: String): LiveData<List<ConsumableLocal>>
 
     @Query("SELECT * FROM meals INNER JOIN consumables_meals ON" +
             " meals.id=consumables_meals.mealId WHERE" +
             " consumables_meals.consumableId=:consumableId")
-    fun getMealsByConsumableId(consumableId: String): LiveData<List<ConsumableLocal>>
+    fun getMealsByConsumableId(consumableId: String): LiveData<List<MealLocal>>
 }
