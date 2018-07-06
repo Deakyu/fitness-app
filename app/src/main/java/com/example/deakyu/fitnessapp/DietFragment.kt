@@ -2,7 +2,10 @@ package com.example.deakyu.fitnessapp
 
 
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,12 +26,21 @@ class DietFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+                view.findViewById<FloatingActionButton>(R.id.fab_diet)?.setOnClickListener{
+                   DietActivity.createAlertDialog(getString(R.string.add_diet),context!!)
 
-        view.findViewById<Button>(R.id.diet_bt)?.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.next_action,null)
-        )
+               }
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview_diet)
+
+        val titles = List<String>(5){"Item"}
+
+        val adapter = DietAdapter(titles.toTypedArray())
+
+        recyclerView.adapter = adapter
+        val layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = layoutManager
+
 
     }
-
-
 }

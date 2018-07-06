@@ -1,6 +1,5 @@
 package com.example.deakyu.fitnessapp
 
-
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -20,10 +19,6 @@ class ListFoodFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<Button>(R.id.button_go_addfood)?.setOnClickListener (
-                Navigation.createNavigateOnClickListener(R.id.next_action,null)
-        )
 
 
     }
