@@ -9,9 +9,12 @@ import android.view.View
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isEmailValid
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isPasswordValid
 import kotlinx.android.synthetic.main.activity_register.*
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser
 
 class RegisterActivity : AppCompatActivity(){
 
+    private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     companion object {
         fun newIntent(context: Context): Intent
@@ -105,13 +108,23 @@ class RegisterActivity : AppCompatActivity(){
             focusView?.requestFocus()
         } else {
 
-            runService()
+            runService(emailStr, passwordStr)
         }
     }
 
-    private fun runService()
+    private fun runService(email: String, password: String)
     {
         //TODO:make call to the api
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) {
+                    if(it.isSuccessful()) {
+                        // Signup && Signin success, update ui with the signed-in user's information
+                        var user: FirebaseUser? = mAuth.currentUser
+                    } else {
+                        // Signup && Signin fails, display error message
+                    }
+                }
 
         var intent = LoginActivity.newIntent(this@RegisterActivity)
         startActivity(intent)
