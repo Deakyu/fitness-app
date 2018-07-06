@@ -30,6 +30,8 @@
     </string>
     <string name="error_register_user">Error Registering User</string>
     <string name="success_register_user">Welcome, you\'re successfully registered!</string>
+    <string name="success_login_user">Welcome to Baufer!</string>
+    <string name="error_login_user">Error login user</string>
 
     <!-- Navigation Header -->
     <string name="nav_diet_string">Diets</string>
