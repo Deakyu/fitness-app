@@ -13,6 +13,7 @@ import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isEmailVali
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isPasswordValid
 import kotlinx.android.synthetic.main.activity_register.*
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 
 class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
@@ -108,38 +109,40 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             // form field with an error.
             focusView?.requestFocus()
         } else {
-            runService(emailStr, passwordStr, nameStr, ageStr.toInt(), heightStr.toDouble(), weightStr.toDouble(), genderStr?:resources.getStringArray(R.array.gender_array)[0])
+            registerUser(emailStr, passwordStr, nameStr, ageStr.toInt(), heightStr.toDouble(), weightStr.toDouble(), genderStr?:resources.getStringArray(R.array.gender_array)[0])
         }
     }
 
-    private fun runService(email: String, password: String, name: String, age: Int, height: Double, weight: Double, gender: String)
-    {
+    private fun registerUser(email: String, password: String, name: String, age: Int, height: Double, weight: Double, gender: String) {
         mAuth
         .createUserWithEmailAndPassword(email, password)
         .addOnCompleteListener(this@RegisterActivity) {
             if(it.isSuccessful) { // Sign-up success
-                val user: User = User(name, email, age, height, weight, gender)
                 val currentUser = mAuth.currentUser
                 if(currentUser != null) {
-                    FirebaseDatabase
-                        .getInstance()
-                        .getReference("users")
-                        .child(currentUser.uid) // UID of the recently registered user
-                        .setValue(user)
-                        .addOnCompleteListener {
-                            if(it.isSuccessful) { // Success to save user profile
-                                Toast.makeText(applicationContext, "Welcome, ${user.name}! You're registered", Toast.LENGTH_SHORT).show()
-                                val intent = LoginActivity.newIntent(this@RegisterActivity)
-                                startActivity(intent)
-                            } else { // Failed to save user profile
-                                Toast.makeText(this@RegisterActivity, getString(R.string.error_register_user), Toast.LENGTH_SHORT).show()
-                            }
-                        }
+                    addUserProfileToDatabase(currentUser.uid, User(name, email, age, height, weight, gender))
                 }
             } else { // Sign-up Failed - display error message
                 Toast.makeText(this@RegisterActivity, getString(R.string.error_register_user), Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun addUserProfileToDatabase(uid: String, user: User) {
+        FirebaseDatabase
+                .getInstance()
+                .getReference("users")
+                .child(uid) // UID of the recently registered user
+                .setValue(user)
+                .addOnCompleteListener {
+                    if(it.isSuccessful) { // Success to save user profile
+                        Toast.makeText(applicationContext, getString(R.string.success_register_user), Toast.LENGTH_SHORT).show()
+                        val intent = LoginActivity.newIntent(this@RegisterActivity)
+                        startActivity(intent)
+                    } else { // Failed to save user profile
+                        Toast.makeText(this@RegisterActivity, getString(R.string.error_register_user), Toast.LENGTH_SHORT).show()
+                    }
+                }
     }
 
     // Spinner Item Selected Listener - User clicked somewhere else than one of the items

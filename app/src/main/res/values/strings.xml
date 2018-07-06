@@ -28,6 +28,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="error_register_user">Error Registering User</string>
+    <string name="success_register_user">Welcome, you\'re successfully registered!</string>
 
     <!-- Navigation Header -->
     <string name="nav_diet_string">Diets</string>
@@ -47,7 +49,6 @@
     <string name="button_cancel">Cancel</string>
     <string name="add_diet">Add Diet</string>
     <string name="add_meal">Add Meal</string>
-    <string name="error_register_user">Error Registering User</string>
 
     <!-- Fragment Diet -->
     <string name="diet_fragment">Diet fragment</string>
