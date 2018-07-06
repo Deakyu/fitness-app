@@ -6,12 +6,20 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.View
+import android.widget.AdapterView
+import android.widget.Toast
+import com.example.deakyu.fitnessapp.user.model.User
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isEmailValid
 import com.example.deakyu.fitnessapp.utils.CommonFunctions.Companion.isPasswordValid
 import kotlinx.android.synthetic.main.activity_register.*
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 
-class RegisterActivity : AppCompatActivity(){
+class RegisterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
+    private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private var genderStr: String? = null
 
     companion object {
         fun newIntent(context: Context): Intent
@@ -25,10 +33,11 @@ class RegisterActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        register_button.setOnClickListener { attemptLogin() }
+        register_button.setOnClickListener { attemptRegister() }
+        gender_spinner.onItemSelectedListener = this
     }
 
-    private fun attemptLogin() {
+    private fun attemptRegister() {
 
         // Reset errors.
         email.error = null
@@ -74,7 +83,6 @@ class RegisterActivity : AppCompatActivity(){
             cancel = true
         }
 
-
         // Check for a Age not empty.
         if (TextUtils.isEmpty(ageStr)) {
             age.error = getString(R.string.error_field_required)
@@ -89,7 +97,6 @@ class RegisterActivity : AppCompatActivity(){
             cancel = true
         }
 
-
         // Check for a weight not empty.
         if (TextUtils.isEmpty(weightStr)) {
             weight.error = getString(R.string.error_field_required)
@@ -97,25 +104,54 @@ class RegisterActivity : AppCompatActivity(){
             cancel = true
         }
 
-
-
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView?.requestFocus()
         } else {
-
-            runService()
+            registerUser(emailStr, passwordStr, nameStr, ageStr.toInt(), heightStr.toDouble(), weightStr.toDouble(), genderStr?:resources.getStringArray(R.array.gender_array)[0])
         }
     }
 
-    private fun runService()
-    {
-        //TODO:make call to the api
+    private fun registerUser(email: String, password: String, name: String, age: Int, height: Double, weight: Double, gender: String) {
+        mAuth
+        .createUserWithEmailAndPassword(email, password)
+        .addOnCompleteListener(this@RegisterActivity) {
+            if(it.isSuccessful) { // Sign-up success
+                val currentUser = mAuth.currentUser
+                if(currentUser != null) {
+                    addUserProfileToDatabase(currentUser.uid, User(name, email, age, height, weight, gender))
+                }
+            } else { // Sign-up Failed - display error message
+                Toast.makeText(this@RegisterActivity, getString(R.string.error_register_user), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
-        var intent = LoginActivity.newIntent(this@RegisterActivity)
-        startActivity(intent)
+    private fun addUserProfileToDatabase(uid: String, user: User) {
+        FirebaseDatabase
+                .getInstance()
+                .getReference("users")
+                .child(uid) // UID of the recently registered user
+                .setValue(user)
+                .addOnCompleteListener {
+                    if(it.isSuccessful) { // Success to save user profile
+                        Toast.makeText(applicationContext, getString(R.string.success_register_user), Toast.LENGTH_SHORT).show()
+                        val intent = LoginActivity.newIntent(this@RegisterActivity)
+                        startActivity(intent)
+                    } else { // Failed to save user profile
+                        Toast.makeText(this@RegisterActivity, getString(R.string.error_register_user), Toast.LENGTH_SHORT).show()
+                    }
+                }
+    }
 
+    // Spinner Item Selected Listener - User clicked somewhere else than one of the items
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+    // Spinner Item Selected Listener - User selected an item
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        genderStr = parent?.getItemAtPosition(position).toString()
+        Toast.makeText(this@RegisterActivity, genderStr, Toast.LENGTH_SHORT).show()
     }
 
 
