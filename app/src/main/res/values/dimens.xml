@@ -8,4 +8,7 @@
     <dimen name="text_medium">22sp</dimen>
     <dimen name="card_padding">20dp</dimen>
     <dimen name="card_default_height">40dp</dimen>
+
+    <!-- Default dimens for custom style. -->
+    <dimen name="button_text_small">12sp</dimen>
 </resources>
