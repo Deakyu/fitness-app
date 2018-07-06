@@ -228,7 +228,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/prompt_gender"
-                android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/gender_spinner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -247,7 +246,6 @@
 
             <Button
                 android:id="@+id/register_button"
-                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -256,7 +254,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/action_register"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gender_spinner" />

@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_diets -> {
                 val intent = DietActivity.newIntent(this)
                 startActivity(intent)
+
             }
             R.id.nav_workouts -> {
                 finish()

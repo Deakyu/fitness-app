@@ -15,6 +15,7 @@ import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.activity_diet.*
 import kotlinx.android.synthetic.main.custom_dialog.view.*
 
+
 class DietActivity : AppCompatActivity() {
 
 
@@ -45,13 +46,13 @@ class DietActivity : AppCompatActivity() {
                     .setNegativeButton(context.getString(R.string.button_cancel),null)
                     .show()
         }
-
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diet)
+
         setSupportActionBar(toolbar)
 
         val host: NavHostFragment = supportFragmentManager
@@ -69,6 +70,5 @@ class DietActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp()
             = findNavController(R.id.host_fragment).navigateUp()
-
 
 }

@@ -9,6 +9,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
+
 
 
 class MealFragment : Fragment() {
@@ -23,6 +27,7 @@ class MealFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
                 view.findViewById<FloatingActionButton>(R.id.fab_meal)?.setOnClickListener{
                        DietActivity.createAlertDialog(getString(R.string.add_meal),context!!)
                  }
@@ -36,6 +41,7 @@ class MealFragment : Fragment() {
         recyclerView.adapter = adapter
         val layoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = layoutManager
+
 
     }
 
